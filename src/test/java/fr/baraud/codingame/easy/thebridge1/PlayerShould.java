@@ -13,12 +13,12 @@ public class PlayerShould {
     public void accelerate_when_not_enough_speed_to_jump() {
         Gap gap = new Gap.BuildNew()
                 .atPosition(10)
-                .withLength(100).build();
+                .withLength(3).build();
         Platform platform = new Platform.BuildNew().
-                atPosition(111)
+                atPosition(13)
                 .withLength(1000).build();
         Player player = new Player.BuildNew()
-                .drivingAtSpeed(0)
+                .drivingAtSpeed(3)
                 .fromPosition(0)
                 .withGap(gap)
                 .withPlatform(platform)

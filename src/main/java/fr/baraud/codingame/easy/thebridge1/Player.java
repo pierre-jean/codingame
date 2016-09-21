@@ -25,11 +25,11 @@ public class Player {
     }
 
     private boolean notEnoughSpeedToJumpGap() {
-        return gap.length() > speed;
+        return gap.length() >= speed;
     }
 
     private boolean tooMuchSpeedToStopOnPlatform() {
-        return minimumDistanceToStopAt(speed)> platform.length();
+        return minimumDistanceToStopAt(speed) > platform.length();
     }
 
     private boolean currentSpeedLeadsToSuccessfulJump() {
