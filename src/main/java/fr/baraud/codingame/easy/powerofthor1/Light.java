@@ -2,15 +2,17 @@ package fr.baraud.codingame.easy.powerofthor1;
 
 public class Light {
 
-    private int x;
-    private int y;
+    private final Position position;
 
-    public Light(int x, int y){
-        this.x = x;
-        this.y = y;
+    public Light(Position position){
+        this.position = position;
     }
 
-    String directionFrom(int xFrom, int yFrom){
-        return Direction.from(xFrom, yFrom).to(x, y);
+    public static Light atPosition(int x, int y){
+        return new Light(new Position(x, y));
+    }
+
+    String directionFrom(Position position){
+        return Direction.from(position).to(this.position);
     }
 }

@@ -10,41 +10,41 @@ public class DirectionShould {
 
     @Test
     public void return_south_when_target_is_south(){
-        assertThat(Direction.from(2,3).to(4,3), is(equalTo(Direction.SOUTH)));
+        assertThat(Direction.from(new Position(2,3)).to(new Position(4,3)), is(equalTo(Direction.SOUTH)));
     }
 
     @Test
     public void return_north_when_target_is_north(){
-        assertThat(Direction.from(2,3).to(0,3), is(equalTo(Direction.NORTH)));
+        assertThat(Direction.from(new Position(2,3)).to(new Position(0,3)), is(equalTo(Direction.NORTH)));
     }
 
     @Test
     public void return_east_when_target_is_east(){
-        assertThat(Direction.from(0,3).to(0,5), is(equalTo(Direction.EAST)));
+        assertThat(Direction.from(new Position(0,3)).to(new Position(0,5)), is(equalTo(Direction.EAST)));
     }
 
     @Test
     public void return_west_when_target_is_west(){
-        assertThat(Direction.from(0,3).to(0,0), is(equalTo(Direction.WEST)));
+        assertThat(Direction.from(new Position(0,3)).to(new Position(0,0)), is(equalTo(Direction.WEST)));
     }
 
     @Test
     public void return_southwest_when_target_is_southwest(){
-        assertThat(Direction.from(0,3).to(3,0), is(equalTo(Direction.SOUTH_WEST)));
+        assertThat(Direction.from(new Position(0,3)).to(new Position(3,0)), is(equalTo(Direction.SOUTH_WEST)));
     }
 
     @Test
     public void return_southeast_when_target_is_southeast(){
-        assertThat(Direction.from(0,3).to(4,5), is(equalTo(Direction.SOUTH_EAST)));
+        assertThat(Direction.from(new Position(0,3)).to(new Position(4,5)), is(equalTo(Direction.SOUTH_EAST)));
     }
 
     @Test
     public void return_northeast_when_target_is_northeast(){
-        assertThat(Direction.from(3,3).to(0,5), is(equalTo(Direction.NORTH_EAST)));
+        assertThat(Direction.from(new Position(3,3)).to(new Position(0,5)), is(equalTo(Direction.NORTH_EAST)));
     }
 
     @Test
     public void return_northwest_when_target_is_northwest(){
-        assertThat(Direction.from(3,3).to(1,0), is(equalTo(Direction.NORTH_WEST)));
+        assertThat(Direction.from(new Position(3,3)).to(new Position(1,0)), is(equalTo(Direction.NORTH_WEST)));
     }
 }

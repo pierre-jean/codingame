@@ -11,22 +11,20 @@ public class Direction {
     public final static String WEST = "W";
     public final static String NORTH_WEST = "NW";
 
-    private final int xCoordFrom;
-    private final int yCoordFrom;
+    private Position from;
 
-     private Direction(int xCoordFrom, int yCoordFrom){
-         this.xCoordFrom = xCoordFrom;
-         this.yCoordFrom = yCoordFrom;
+     private Direction(Position from){
+         this.from = from;
      }
 
-    public static Direction from(int x, int y) {
-        return new Direction(x, y);
+    public static Direction from(Position position) {
+        return new Direction(position);
     }
 
-    public String to(int xCoordTo, int yCoordTo){
+    public String to(Position to){
         StringBuffer direction = new StringBuffer();
-        direction.append(xCoordTo > xCoordFrom ? SOUTH: xCoordTo < xCoordFrom ? NORTH : "");
-        direction.append(yCoordTo > yCoordFrom ? EAST : yCoordTo < yCoordFrom? WEST : "");
+        direction.append(to.x() > from.x() ? SOUTH: to.x() < from.x() ? NORTH : "");
+        direction.append(to.y() > from.y() ? EAST : to.y() < from.y() ? WEST : "");
         return direction.toString();
     }
 
