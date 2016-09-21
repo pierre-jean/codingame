@@ -13,6 +13,10 @@ public class Gap {
         return this.length;
     }
 
+    public int position() {
+        return position;
+    }
+
     public static class BuildNew {
         private int position = 0;
         private int length = 0;

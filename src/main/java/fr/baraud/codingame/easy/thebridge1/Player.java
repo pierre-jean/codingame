@@ -18,20 +18,30 @@ public class Player {
             return Action.SPEED_UP;
         } if (tooMuchSpeedToStopOnPlatform()){
             return Action.SLOW_DOWN;
+        } if (currentSpeedLeadsToSuccessfulJump()){
+            return Action.WAIT;
         }
-        return Action.WAIT;
+        return Action.SLOW_DOWN;
+    }
+
+    private boolean notEnoughSpeedToJumpGap() {
+        return gap.length() > speed;
     }
 
     private boolean tooMuchSpeedToStopOnPlatform() {
         return minimumDistanceToStopAt(speed)> platform.length();
     }
 
-    private int minimumDistanceToStopAt(int speed){
-        return (speed * (speed - 1 )) / 2;
+    private boolean currentSpeedLeadsToSuccessfulJump() {
+        return distanceBeforeJumpAt(speed) + gap.length() < speed;
     }
 
-    private boolean notEnoughSpeedToJumpGap() {
-        return gap.length() > speed;
+    private int distanceBeforeJumpAt(int speed) {
+        return ((gap.position() - this.position) - 1) % speed;
+    }
+
+    private int minimumDistanceToStopAt(int speed){
+        return (speed * (speed - 1 )) / 2;
     }
 
 

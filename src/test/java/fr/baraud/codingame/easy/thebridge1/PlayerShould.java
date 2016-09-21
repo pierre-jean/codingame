@@ -57,5 +57,21 @@ public class PlayerShould {
                 .withGap(gap).build();
         assertThat(player.bestAction(), is(Action.WAIT));
     }
+
+    @Test
+    public void slowdown_if_waiting_is_not_successful(){
+        Gap gap = new Gap.BuildNew()
+                .atPosition(4)
+                .withLength(1).build();
+        Platform platform = new Platform.BuildNew()
+                .atPosition(5)
+                .withLength(6).build();
+        Player player = new Player.BuildNew()
+                .drivingAtSpeed(2)
+                .fromPosition(0)
+                .withPlatform(platform)
+                .withGap(gap).build();
+        assertThat(player.bestAction(), is(Action.SLOW_DOWN));
+    }
     
 }
