@@ -8,6 +8,7 @@ import java.util.Scanner;
 class Mountains {
 
     private static final int NUMBER_OF_MOUNTAINS = 8;
+    private static final int NO_MOUNTAIN = -1;
 
     private final int highestIndex;
 
@@ -21,7 +22,7 @@ class Mountains {
 
     static Mountains fromStream(InputStream input){
         Scanner scanner = new Scanner(input);
-        int highestIndex = 0;
+        int highestIndex = NO_MOUNTAIN;
         int highestAltitude = 0;
         for (int i = 0; i < NUMBER_OF_MOUNTAINS; i++){
             int altitude = scanner.nextInt();
@@ -31,6 +32,10 @@ class Mountains {
             }
         }
         return Mountains.fromHighestIndex(highestIndex);
+    }
+
+    public boolean areDestroyed(){
+        return highestIndex == NO_MOUNTAIN;
     }
 
     private static Mountains fromHighestIndex(int mountainIndex){

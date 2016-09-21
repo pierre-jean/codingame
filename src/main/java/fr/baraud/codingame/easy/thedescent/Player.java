@@ -25,8 +25,10 @@ class Player {
 
     public static void main(String[] args){
         Player player = new Player(System.out);
-        while (true){
-            player.shotBiggestMountain(Mountains.fromStream(System.in));
+        Mountains mountains = Mountains.fromStream(System.in);
+        while (!mountains.areDestroyed()){
+            player.shotBiggestMountain(mountains);
+            mountains = Mountains.fromStream(System.in);
         }
     }
 }
