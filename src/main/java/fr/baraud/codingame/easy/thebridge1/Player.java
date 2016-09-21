@@ -3,21 +3,35 @@ package fr.baraud.codingame.easy.thebridge1;
 public class Player {
     private final int position;
     private final int speed;
+    private final Gap gap;
+    private final Platform platform;
 
-    private Player(int position, int speed){
+    private Player(int position, int speed, Gap gap, Platform platform){
         this.position = position;
         this.speed = speed;
+        this.gap = gap;
+        this.platform = platform;
     }
 
-    public Action actionToJump(Bridge bridge){
-        if (notEnoughSpeedToJump(bridge)){
+    public Action bestAction(){
+        if (notEnoughSpeedToJumpGap()){
             return Action.SPEED_UP;
+        } if (tooMuchSpeedToStopOnPlatform()){
+            return Action.SLOW_DOWN;
         }
-        return Action.SLOW_DOWN;
+        return Action.WAIT;
     }
 
-    private boolean notEnoughSpeedToJump(Bridge bridge) {
-        return bridge.length() > speed;
+    private boolean tooMuchSpeedToStopOnPlatform() {
+        return minimumDistanceToStopAt(speed)> platform.length();
+    }
+
+    private int minimumDistanceToStopAt(int speed){
+        return (speed * (speed - 1 )) / 2;
+    }
+
+    private boolean notEnoughSpeedToJumpGap() {
+        return gap.length() > speed;
     }
 
 
@@ -25,6 +39,8 @@ public class Player {
 
         private int position = 0;
         private int speed = 0;
+        private Gap gap = new Gap.BuildNew().build();
+        private Platform platform = new Platform.BuildNew().build();
 
         public BuildNew drivingAtSpeed(int speed) {
             this.speed = speed;
@@ -36,8 +52,20 @@ public class Player {
             return this;
         }
 
-        public Player build() {
-            return new Player(position, speed);
+        public BuildNew withGap(Gap gap) {
+            this.gap = gap;
+            return this;
         }
+
+        public BuildNew withPlatform(Platform platform) {
+            this.platform = platform;
+            return this;
+        }
+
+        public Player build() {
+            return new Player(position, speed, gap, platform);
+        }
+
+
     }
 }

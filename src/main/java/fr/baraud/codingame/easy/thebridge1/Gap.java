@@ -1,10 +1,10 @@
 package fr.baraud.codingame.easy.thebridge1;
 
-public class Bridge {
+public class Gap {
     private final int position;
     private final int length;
 
-    private Bridge(int position, int length){
+    private Gap(int position, int length){
         this.position = position;
         this.length = length;
     }
@@ -28,8 +28,8 @@ public class Bridge {
             return this;
         }
 
-        public Bridge build() {
-            return new Bridge(position, length);
+        public Gap build() {
+            return new Gap(position, length);
         }
     }
 }
