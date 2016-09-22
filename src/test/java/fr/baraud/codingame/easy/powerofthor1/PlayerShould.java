@@ -13,36 +13,36 @@ public class PlayerShould {
 
     @Test
     public void moveEastWhenLightIsEast(){
-        Player player = Player.atPosition(5,10);
-        Light light = Light.atPosition(5, 15);
+        Player player = Player.atPosition(10, 5);
+        Light light = Light.atPosition(15, 5);
         assertThat(player.directionTo(light), is(equalTo(Direction.EAST)));
     }
 
     @Test
     public void moveWestLightIsWest(){
-        Player player = Player.atPosition(5,15);
-        Light light = Light.atPosition(5, 10);
+        Player player = Player.atPosition(15, 5);
+        Light light = Light.atPosition(10, 5);
         assertThat(player.directionTo(light), is(equalTo(Direction.WEST)));
     }
 
     @Test
     public void moveSouthLightIsSouth(){
-        Player player = Player.atPosition(5,15);
-        Light light = Light.atPosition(10, 15);
+        Player player = Player.atPosition(15, 5);
+        Light light = Light.atPosition(15, 10);
         assertThat(player.directionTo(light), is(equalTo(Direction.SOUTH)));
     }
 
     @Test
     public void moveNorthLightIsNorth(){
-        Player player = Player.atPosition(10,15);
-        Light light = Light.atPosition(5, 15);
+        Player player = Player.atPosition(15, 10);
+        Light light = Light.atPosition(15, 5);
         assertThat(player.directionTo(light), is(equalTo(Direction.NORTH)));
     }
 
     @Test
     public void moveNorthEastLightIsNorthEast(){
         Player player = Player.atPosition(10,10);
-        Light light = Light.atPosition(5, 15);
+        Light light = Light.atPosition(15, 5);
         assertThat(player.directionTo(light), is(equalTo(Direction.NORTH_EAST)));
     }
 
@@ -55,8 +55,8 @@ public class PlayerShould {
 
     @Test
     public void moveSouthWestLightIsSouthWest(){
-        Player player = Player.atPosition(0,10);
-        Light light = Light.atPosition(10, 0);
+        Player player = Player.atPosition(10, 0);
+        Light light = Light.atPosition(0, 10);
         assertThat(player.directionTo(light), is(equalTo(Direction.SOUTH_WEST)));
     }
 

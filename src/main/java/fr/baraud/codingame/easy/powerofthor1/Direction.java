@@ -23,10 +23,8 @@ public class Direction {
 
     public String to(Position to){
         StringBuffer direction = new StringBuffer();
-        direction.append(to.x() > from.x() ? SOUTH: to.x() < from.x() ? NORTH : "");
-        direction.append(to.y() > from.y() ? EAST : to.y() < from.y() ? WEST : "");
+        direction.append(to.y() > from.y() ? SOUTH : to.y() < from.y() ? NORTH : "");
+        direction.append(to.x() > from.x() ? EAST: to.x() < from.x() ? WEST : "");
         return direction.toString();
     }
-
-
 }
