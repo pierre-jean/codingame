@@ -23,7 +23,7 @@ class BinaryMessage {
     static String encodeToBinary(String asciiMessage){
         StringBuffer binaryMessage = new StringBuffer();
         for (byte characterAsByte : asciiMessage.getBytes()){
-            binaryMessage.append(Integer.toBinaryString(characterAsByte));
+            binaryMessage.append(String.format("%7s",Integer.toBinaryString(characterAsByte)).replace(' ', '0'));
         }
         return binaryMessage.toString();
     }

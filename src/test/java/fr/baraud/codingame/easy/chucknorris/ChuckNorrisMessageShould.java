@@ -6,7 +6,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsEqual.equalTo;
 
-public class SolutionShould {
+public class ChuckNorrisMessageShould {
 
     @Test
     public void display_0_0_00_0000_0_00_for_C() {

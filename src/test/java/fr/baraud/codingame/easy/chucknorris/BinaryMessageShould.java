@@ -15,6 +15,11 @@ public class BinaryMessageShould {
         assertThat(BinaryMessage.encodeToBinary("C"), is(equalTo("1000011")));
     }
 
+    @Test
+    public void convert_ascii_percent_to_binary_0100101(){
+        assertThat(BinaryMessage.encodeToBinary("%"), is(equalTo("0100101")));
+    }
+
 
     @Test
     public void return_000_for_extract_first_sequence_000101000() {
