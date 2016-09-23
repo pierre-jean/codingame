@@ -14,16 +14,11 @@ public class SolutionShould {
         assertThat(chuckNorrisMessage.toString(), is(equalTo("0 0 00 0000 0 00")));
     }
 
-//    @Test
-//    public void display_0_0_00_0000_0_000_00_0000_0_00_for_CC() {
-//        ChuckNorrisMessage chuckNorrisMessage = new ChuckNorrisMessage("CC");
-//        assertThat(chuckNorrisMessage.toString(), is(equalTo("0 0 00 0000 0 000 00 0000 0 00")));
-//    }
-//
-//    @Test
-//    public void convert_C_to_binary_1000011(){
-//        ChuckNorrisMessage chuckNorrisMessage = new ChuckNorrisMessage("C");
-//        assertThat(chuckNorrisMessage.toBinaryMessage(), is(equalTo("1000011")));
-//    }
+    @Test
+    public void display_0_0_00_0000_0_000_00_0000_0_00_for_CC() {
+        ChuckNorrisMessage chuckNorrisMessage = new ChuckNorrisMessage("CC");
+        assertThat(chuckNorrisMessage.toString(), is(equalTo("0 0 00 0000 0 000 00 0000 0 00")));
+    }
+
 
 }

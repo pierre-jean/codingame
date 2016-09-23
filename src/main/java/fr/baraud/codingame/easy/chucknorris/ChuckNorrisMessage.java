@@ -1,7 +1,10 @@
 package fr.baraud.codingame.easy.chucknorris;
 
-public class ChuckNorrisMessage {
-    private static final char ONE = '1';
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+class ChuckNorrisMessage {
     private static final char ZERO = '0';
     private static final String ONE_SEQ = "0";
     private static final String ZERO_SEQ = "00";
@@ -11,52 +14,30 @@ public class ChuckNorrisMessage {
         this.asciiMessage = asciiMessage;
     }
 
-    String toBinaryMessage(){
-        StringBuffer binaryMessage = new StringBuffer();
-        for (byte characterAsByte : asciiMessage.getBytes()){
-            binaryMessage.append(Integer.toBinaryString(characterAsByte));
-        }
-        return binaryMessage.toString();
-    }
-
     String toChuckNorrisMessage(){
-        String binaryMessage = this.toBinaryMessage();
-        StringBuffer chuckNorrisMessage = new StringBuffer();
-        int positionInMessage = 0;
-        while (positionInMessage < binaryMessage.length()){
-            char firstElementOfSequence = binaryMessage.charAt(positionInMessage);
-            int lengthOfSequence = lengthOfSequenceStartingAt(positionInMessage, binaryMessage);
-            chuckNorrisMessage.append(encodeToChuckNorrisSequence(firstElementOfSequence, lengthOfSequence));
-            positionInMessage += lengthOfSequence;
-            if (positionInMessage < lengthOfSequence ){
-                chuckNorrisMessage.append(" ");
-            }
-        }
-        return chuckNorrisMessage.toString();
+        BinaryMessage binaryMessage = BinaryMessage.fromAscii(asciiMessage);
+        List<String> binarySequences = binaryMessage.getSequencesOfZeroAndOnes();
+        List<String> chuckNorrisSequences = encodeToChuckNorrisSequences(binarySequences);
+        return String.join(" ", chuckNorrisSequences);
     }
 
-    int lengthOfSequenceStartingAt(int positionOfFirstElementOfSequence, String binaryMessage) {
-        char firstCharacterOfSequence = binaryMessage.charAt(positionOfFirstElementOfSequence);
-        for (int positionOfLastElementOfSequence = positionOfFirstElementOfSequence;
-             positionOfLastElementOfSequence < binaryMessage.length();
-             positionOfLastElementOfSequence++){
-            if (binaryMessage.charAt(positionOfLastElementOfSequence) != firstCharacterOfSequence){
-                return positionOfLastElementOfSequence - positionOfFirstElementOfSequence;
-            }
+    private List<String> encodeToChuckNorrisSequences(List<String> binarySequences) {
+        List<String> chuckNorrisSequences = new ArrayList<>();
+        for (String binarySeq : binarySequences){
+            chuckNorrisSequences.add(encodeToChuckNorrisSequence(binarySeq));
         }
-        return binaryMessage.length() - positionOfFirstElementOfSequence;
+        return chuckNorrisSequences;
     }
 
-
-    private String encodeToChuckNorrisSequence(char firstElementOfSequence, int lengthOfSequence) {
+    static String encodeToChuckNorrisSequence(String binarySeq) {
         StringBuffer sequence = new StringBuffer();
-        if (firstElementOfSequence == ZERO) {
+        if (binarySeq.charAt(0) == ZERO) {
             sequence.append(ZERO_SEQ);
         } else {
             sequence.append(ONE_SEQ);
         }
         sequence.append(" ");
-        for (int i = 0; i < lengthOfSequence; i++){
+        for (int i = 0; i < binarySeq.length(); i++){
             sequence.append(ZERO);
         }
         return sequence.toString();
@@ -64,6 +45,13 @@ public class ChuckNorrisMessage {
 
     @Override
     public String toString() {
-        return "0 0 00 0000 0 00";
+        return toChuckNorrisMessage();
+    }
+
+    public static void main(String args[]){
+        Scanner in = new Scanner(System.in);
+        String asciiMessage = in.nextLine();
+        ChuckNorrisMessage chuckNorrisMessage =  new ChuckNorrisMessage(asciiMessage);
+        System.out.println(chuckNorrisMessage.toString());
     }
 }
