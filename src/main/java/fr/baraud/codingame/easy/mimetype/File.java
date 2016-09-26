@@ -1,12 +1,9 @@
 package fr.baraud.codingame.easy.mimetype;
 
 class File {
-
-    private final String name;
     private final String extension;
 
-    private File(String name, String extension) {
-        this.name = name;
+    private File(String extension) {
         this.extension = extension;
     }
 
@@ -16,14 +13,23 @@ class File {
 
     public static class BuildNew {
 
-        public File fromName(String fileName) {
-            String[] fileAndExtension = fileName.split("\\.");
-            if (fileAndExtension.length > 1){
-                String extension = fileAndExtension[fileAndExtension.length-1].toUpperCase();
-                String name = fileName.substring(0, fileName.length() - fileAndExtension.length - 2);
-                return new File(name, extension);
+        public File fromName(String fileNameWithExtension) {
+            String[] fileNameSplitByDot = fileNameWithExtension.split("\\.");
+            if (noDot(fileNameSplitByDot) || emptyExtension(fileNameWithExtension)){
+                return new File("");
             }
-            return  new File(fileName, "");
+            return new File(fileNameSplitByDot[fileNameSplitByDot.length - 1].toUpperCase());
         }
+
+        private boolean noDot(String[] fileNameSplitByDot) {
+            return fileNameSplitByDot.length == 1 ;
+        }
+
+        private boolean emptyExtension(String fileName){
+            char lastChar = fileName.charAt(fileName.length()-1);
+            return lastChar == '.';
+        }
+
+
     }
 }

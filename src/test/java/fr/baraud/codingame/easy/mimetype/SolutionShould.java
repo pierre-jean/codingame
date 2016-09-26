@@ -9,6 +9,7 @@ import java.io.OutputStream;
 import java.util.Scanner;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.Matchers.isEmptyString;
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.junit.Assert.assertThat;
 
@@ -85,6 +86,17 @@ public class SolutionShould {
     }
 
     @Test
+    public void filter_empty_extension(){
+        File pngFile = new File.BuildNew().fromName(".mp3.");
+        assertThat(pngFile.extension(), is(equalTo("")));
+    }
+
+    @Test public void accept_empty_filename_on_file_creation(){
+        File onlyExtensionFile = new File.BuildNew().fromName(".png");
+        assertThat(onlyExtensionFile.extension(), is(equalTo("PNG")));
+    }
+
+    @Test
     public void resolve_type_html(){
         String entry = "2%n" +
                 "4%n" +
@@ -107,7 +119,45 @@ public class SolutionShould {
     }
 
     @Test
-    public void createFiles(){
-
+    public void resolve_test_03(){
+        String entry = "3%n" +
+                "11%n" +
+                "wav audio/x-wav%n" +
+                "mp3 audio/mpeg%n" +
+                "pdf application/pdf%n" +
+                "a%n" +
+                "a.wav%n" +
+                "b.wav.tmp%n"+
+                "test.vmp3%n"+
+                "pdf%n"+
+                ".pdf%n"+
+                "mp3%n"+
+                "report..pdf%n"+
+                "defaultwav%n"+
+                ".mp3.%n"+
+                "final.%n";
+        InputStream in = new ByteArrayInputStream(String.format(entry).getBytes());
+        SolutionInputStream solutionInputStream = new SolutionInputStream(in);
+        MimeTypeResolver mimeTypeResolver = new MimeTypeResolver.BuildNew()
+                .fromStream(solutionInputStream.getMimeListingInputStream());
+        FileElements files = new FileElements.BuildNew()
+                .fromStream(solutionInputStream.getFileListingInputStream());
+        OutputStream out = new ByteArrayOutputStream();
+        for (File file : files.getAllFiles()){
+            Printer printer = new Printer(out);
+            printer.print(mimeTypeResolver.resolveTypeOf(file));
+        }
+        String expectedOutput = "UNKNOWN%n" +   //a
+                "audio/x-wav%n" +   //a.wav
+                "UNKNOWN%n" +   //b.wav.tmp
+                "UNKNOWN%n" +   //test.vmp3
+                "UNKNOWN%n" +   //pdf
+                "application/pdf%n" +   //.pdf
+                "UNKNOWN%n" +   //mp3
+                "application/pdf%n" +   //report..pdf
+                "UNKNOWN%n" +   //defaultwav
+                "UNKNOWN%n" +   //.mp3.
+                "UNKNOWN%n";    //final.
+        assertThat(out.toString(), is(equalTo(String.format(expectedOutput))));
     }
 }
