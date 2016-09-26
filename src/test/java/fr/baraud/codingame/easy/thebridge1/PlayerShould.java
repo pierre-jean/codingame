@@ -1,8 +1,7 @@
 package fr.baraud.codingame.easy.thebridge1;
 
-import com.sun.xml.internal.ws.db.glassfish.JAXBRIContextFactory;
 import org.junit.Test;
-import sun.corba.Bridge;
+
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
