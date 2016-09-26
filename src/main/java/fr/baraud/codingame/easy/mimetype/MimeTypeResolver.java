@@ -1,16 +1,37 @@
 package fr.baraud.codingame.easy.mimetype;
 
-import java.io.InputStream;
+import org.omg.CORBA.UNKNOWN;
 
-public class MimeTypeResolver {
+import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+class MimeTypeResolver {
+    private static final String UNKNOWN = "UNKNOWN";
+
+    private final Map<String, String> mimeTypes;
+
+    private MimeTypeResolver(Map<String, String> mimeTypes){
+        this.mimeTypes = mimeTypes;
+    }
 
     public String resolveTypeOf(File file) {
-        return "text/html";
+        String type = mimeTypes.get(file.extension().toUpperCase());
+        return type != null ? type : UNKNOWN;
     }
 
     public static class BuildNew {
         public MimeTypeResolver fromStream(InputStream typeInputStream) {
-            return new MimeTypeResolver();
+            Map<String, String> mimeTypes = new HashMap<>();
+            Scanner scanner = new Scanner(typeInputStream);
+            while (scanner.hasNextLine()){
+                String line = scanner.nextLine();
+                String extension = line.split(" ")[0].toUpperCase();
+                String type = line.split(" ")[1];
+                mimeTypes.put(extension, type);
+            }
+            return new MimeTypeResolver(mimeTypes);
         }
     }
 }

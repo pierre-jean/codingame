@@ -35,6 +35,7 @@ public class SolutionShould {
             Printer printer = new Printer(out);
             printer.print(mimeTypeResolver.resolveTypeOf(file));
         }
+        assertThat(out.toString(), is(equalTo(String.format("text/html%nUNKNOWN%nimage/png%nUNKNOWN%n"))));
     }
 
     @Test
@@ -78,6 +79,12 @@ public class SolutionShould {
     }
 
     @Test
+    public void create_file_with_extension_in_uppercase(){
+        File pngFile = new File.BuildNew().fromName("landscape.png");
+        assertThat(pngFile.extension(), is(equalTo("PNG")));
+    }
+
+    @Test
     public void resolve_type_html(){
         String entry = "2%n" +
                 "4%n" +
@@ -93,5 +100,14 @@ public class SolutionShould {
                 .fromStream(solutionInputStream.getMimeListingInputStream());
         File htmlFile = new File.BuildNew().fromName("test.html");
         assertThat(mimeTypeResolver.resolveTypeOf(htmlFile), is(equalTo("text/html")));
+        File pngFile = new File.BuildNew().fromName("portrait.png");
+        assertThat(mimeTypeResolver.resolveTypeOf(pngFile), is(equalTo("image/png")));
+        File noExtensionFile = new File.BuildNew().fromName("noextension");
+        assertThat(mimeTypeResolver.resolveTypeOf(noExtensionFile), is(equalTo("UNKNOWN")));
+    }
+
+    @Test
+    public void createFiles(){
+
     }
 }
