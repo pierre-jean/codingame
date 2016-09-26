@@ -9,7 +9,6 @@ import java.io.OutputStream;
 import java.util.Scanner;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.Matchers.isEmptyString;
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.junit.Assert.assertThat;
 

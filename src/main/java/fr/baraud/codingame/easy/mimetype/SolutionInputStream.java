@@ -8,8 +8,8 @@ import java.util.Scanner;
 
 class SolutionInputStream {
 
-    byte[] mimeTypesInput;
-    byte[] fileElementsInput;
+    private byte[] mimeTypesInput;
+    private byte[] fileElementsInput;
 
     SolutionInputStream(InputStream in) {
         readMimeAndFileInput(in);

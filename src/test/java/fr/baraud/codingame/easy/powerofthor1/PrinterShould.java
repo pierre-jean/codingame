@@ -3,7 +3,6 @@ package fr.baraud.codingame.easy.powerofthor1;
 import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.io.OutputStream;
 
 import static org.hamcrest.CoreMatchers.is;

@@ -1,8 +1,8 @@
 package fr.baraud.codingame.easy.chucknorris;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 class ChuckNorrisMessage {
     private static final char ZERO = '0';
@@ -10,11 +10,11 @@ class ChuckNorrisMessage {
     private static final String ZERO_SEQ = "00";
     private final String asciiMessage;
 
-    public ChuckNorrisMessage(String asciiMessage) {
+    ChuckNorrisMessage(String asciiMessage) {
         this.asciiMessage = asciiMessage;
     }
 
-    String toChuckNorrisMessage(){
+    private String toChuckNorrisMessage(){
         BinaryMessage binaryMessage = BinaryMessage.fromAscii(asciiMessage);
         List<String> binarySequences = binaryMessage.getSequencesOfZeroAndOnes();
         List<String> chuckNorrisSequences = encodeToChuckNorrisSequences(binarySequences);
@@ -22,15 +22,13 @@ class ChuckNorrisMessage {
     }
 
     private List<String> encodeToChuckNorrisSequences(List<String> binarySequences) {
-        List<String> chuckNorrisSequences = new ArrayList<>();
-        for (String binarySeq : binarySequences){
-            chuckNorrisSequences.add(encodeToChuckNorrisSequence(binarySeq));
-        }
-        return chuckNorrisSequences;
+        return binarySequences.stream().map(
+                ChuckNorrisMessage::encodeToChuckNorrisSequence)
+                .collect(Collectors.toList());
     }
 
-    static String encodeToChuckNorrisSequence(String binarySeq) {
-        StringBuffer sequence = new StringBuffer();
+    private static String encodeToChuckNorrisSequence(String binarySeq) {
+        StringBuilder sequence = new StringBuilder();
         if (binarySeq.charAt(0) == ZERO) {
             sequence.append(ZERO_SEQ);
         } else {

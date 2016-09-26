@@ -3,15 +3,15 @@ package fr.baraud.codingame.easy.powerofthor1;
 import java.io.IOException;
 import java.io.OutputStream;
 
-public class Printer {
+class Printer {
 
     private OutputStream outputStream;
 
-    public Printer(OutputStream outputStream) {
+    Printer(OutputStream outputStream) {
         this.outputStream = outputStream;
     }
 
-    public void print(String message) {
+    void print(String message) {
         try {
             tryToPrint(message);
         } catch (IOException e) {

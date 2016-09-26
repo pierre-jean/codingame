@@ -7,13 +7,13 @@ class File {
         this.extension = extension;
     }
 
-    public String extension() {
+    String extension() {
         return extension;
     }
 
-    public static class BuildNew {
+    static class BuildNew {
 
-        public File fromName(String fileNameWithExtension) {
+        File fromName(String fileNameWithExtension) {
             String[] fileNameSplitByDot = fileNameWithExtension.split("\\.");
             if (noDot(fileNameSplitByDot) || emptyExtension(fileNameWithExtension)){
                 return new File("");

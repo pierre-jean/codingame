@@ -1,6 +1,6 @@
 package fr.baraud.codingame.easy.thebridge1;
 
-public class Platform {
+class Platform {
 
     private final int length;
 
@@ -8,24 +8,24 @@ public class Platform {
         this.length = length;
     }
 
-    public static class BuildNew {
+    static class BuildNew {
         private int length = 1;
 
-        public BuildNew atPosition(int position) {
+        BuildNew atPosition(int position) {
             return this;
         }
 
-        public BuildNew withLength(int length) {
+        BuildNew withLength(int length) {
             this.length = length;
             return this;
         }
 
-        public Platform build() {
+        Platform build() {
             return new Platform(length);
         }
     }
 
-    public int length() {
+    int length() {
         return length;
     }
 

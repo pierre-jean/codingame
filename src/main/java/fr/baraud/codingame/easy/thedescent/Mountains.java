@@ -34,7 +34,7 @@ class Mountains {
         return Mountains.fromHighestIndex(highestIndex);
     }
 
-    public boolean areDestroyed(){
+    boolean areDestroyed(){
         return highestIndex == NO_MOUNTAIN;
     }
 

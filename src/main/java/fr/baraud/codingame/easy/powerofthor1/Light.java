@@ -1,14 +1,14 @@
 package fr.baraud.codingame.easy.powerofthor1;
 
-public class Light {
+class Light {
 
     private final Position position;
 
-    public Light(Position position){
+    private Light(Position position){
         this.position = position;
     }
 
-    public static Light atPosition(int x, int y){
+    static Light atPosition(int x, int y){
         return new Light(new Position(x, y));
     }
 

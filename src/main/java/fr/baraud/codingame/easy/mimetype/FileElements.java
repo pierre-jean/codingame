@@ -13,12 +13,12 @@ class FileElements {
         this.files = files;
     }
 
-    public List<File> getAllFiles() {
+    List<File> getAllFiles() {
         return files;
     }
 
-    public static class BuildNew {
-        public FileElements fromStream(InputStream fileListingInputStream) {
+    static class BuildNew {
+        FileElements fromStream(InputStream fileListingInputStream) {
             Scanner scanner = new Scanner(fileListingInputStream);
             List<File> files = new ArrayList<>();
             while(scanner.hasNextLine()){

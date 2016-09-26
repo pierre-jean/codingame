@@ -1,7 +1,5 @@
 package fr.baraud.codingame.easy.mimetype;
 
-import org.omg.CORBA.UNKNOWN;
-
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
@@ -16,13 +14,13 @@ class MimeTypeResolver {
         this.mimeTypes = mimeTypes;
     }
 
-    public String resolveTypeOf(File file) {
+    String resolveTypeOf(File file) {
         String type = mimeTypes.get(file.extension().toUpperCase());
         return type != null ? type : UNKNOWN;
     }
 
-    public static class BuildNew {
-        public MimeTypeResolver fromStream(InputStream typeInputStream) {
+    static class BuildNew {
+        MimeTypeResolver fromStream(InputStream typeInputStream) {
             Map<String, String> mimeTypes = new HashMap<>();
             Scanner scanner = new Scanner(typeInputStream);
             while (scanner.hasNextLine()){

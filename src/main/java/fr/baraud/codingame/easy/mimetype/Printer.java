@@ -7,12 +7,12 @@ class Printer {
 
     private OutputStream out;
 
-    public Printer(OutputStream out) {
+    Printer(OutputStream out) {
 
         this.out = out;
     }
 
-    public void print(String line) {
+    void print(String line) {
         try {
             tryToPrint(line);
         } catch (IOException e) {

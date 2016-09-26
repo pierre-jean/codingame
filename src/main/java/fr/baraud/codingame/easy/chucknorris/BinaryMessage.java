@@ -21,7 +21,7 @@ class BinaryMessage {
 
 
     static String encodeToBinary(String asciiMessage){
-        StringBuffer binaryMessage = new StringBuffer();
+        StringBuilder binaryMessage = new StringBuilder();
         for (byte characterAsByte : asciiMessage.getBytes()){
             binaryMessage.append(String.format("%7s",Integer.toBinaryString(characterAsByte)).replace(' ', '0'));
         }
@@ -40,7 +40,7 @@ class BinaryMessage {
     }
 
     static String extractFirstSeq(String message) {
-        StringBuffer sequenceBuffer = new StringBuffer();
+        StringBuilder sequenceBuffer = new StringBuilder();
         int sequenceLength = 0;
         char sequenceChar = message.charAt(sequenceLength);
         while(sequenceLength < message.length() && message.charAt(sequenceLength) == sequenceChar){

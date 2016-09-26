@@ -7,11 +7,11 @@ class Temperatures {
 
     private final int closestToZero;
 
-    public Temperatures(int closestToZero){
+    private Temperatures(int closestToZero){
         this.closestToZero = closestToZero;
     }
 
-    public static Temperatures fromStream(InputStream in) {
+    static Temperatures fromStream(InputStream in) {
         Scanner scanner = new Scanner(in);
         int numberOfMeasures = scanner.nextInt();
         scanner.nextLine();

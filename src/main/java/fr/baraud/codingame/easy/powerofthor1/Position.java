@@ -2,24 +2,24 @@ package fr.baraud.codingame.easy.powerofthor1;
 
 import java.util.Objects;
 
-public class Position {
+class Position {
     private final int x;
     private final int y;
 
-    public Position(int x, int y){
+    Position(int x, int y){
         this.x = x;
         this.y = y;
     }
 
-    public int x(){
+    int x(){
         return x;
     }
 
-    public int y(){
+    int y(){
         return y;
     }
 
-    public Position moveTo(String direction) {
+    Position moveTo(String direction) {
         int newX =  direction.contains(Direction.WEST) ?  x-1 :
                 direction.contains(Direction.EAST) ? x + 1 : x;
         int newY = direction.contains(Direction.NORTH) ? y-1 :
