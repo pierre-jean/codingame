@@ -2,8 +2,9 @@ package fr.baraud.codingame.easy.defibrillators;
 
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Scanner;
 
-public class Solution {
+class Solution {
 
     private final Printer printer;
     private final DefibrillatorDirectory defibrillatorsDirectory;
@@ -15,9 +16,10 @@ public class Solution {
         this.user = user;
     }
 
-    public static void solve(InputStream in, OutputStream out) {
-        User user = new User.BuildNew().fromStream(in).build();
-        DefibrillatorDirectory defibrillatorDirectory = new DefibrillatorDirectory.BuildNew().fromStream(in).build();
+    static void solve(InputStream in, OutputStream out) {
+        Scanner scanner = new Scanner(in);
+        User user = new User.BuildNew().fromScanner(scanner).build();
+        DefibrillatorDirectory defibrillatorDirectory = new DefibrillatorDirectory.BuildNew().fromScanner(scanner).build();
         Printer printer = new Printer.BuildNew().withOutput(out).build();
         Solution solution = new Solution.BuildNew()
                 .withUser(user)
@@ -29,7 +31,7 @@ public class Solution {
 
     private void solve() {
         Defibrillator closestToUser = defibrillatorsDirectory.getClosestTo(user);
-        print(closestToUser.name());
+        print(closestToUser != null ? closestToUser.name() : "No defibrillator found");
     }
 
     private void print(String message){
@@ -41,17 +43,17 @@ public class Solution {
         private DefibrillatorDirectory defibrillatorsDirectory = new DefibrillatorDirectory.BuildNew().build();
         private User user = new User.BuildNew().build();
 
-        public BuildNew withUser(User user) {
+        BuildNew withUser(User user) {
             this.user = user;
             return this;
         }
 
-        public BuildNew withDefibrillatorDirectory(DefibrillatorDirectory defibrillatorDirectory) {
+        BuildNew withDefibrillatorDirectory(DefibrillatorDirectory defibrillatorDirectory) {
             this.defibrillatorsDirectory = defibrillatorDirectory;
             return this;
         }
 
-        public BuildNew withPrinter(Printer printer) {
+        BuildNew withPrinter(Printer printer) {
             this.printer = printer;
             return this;
         }

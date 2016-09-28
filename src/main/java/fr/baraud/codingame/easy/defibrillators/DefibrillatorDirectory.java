@@ -1,9 +1,8 @@
 package fr.baraud.codingame.easy.defibrillators;
 
-import java.io.InputStream;
 import java.util.*;
 
-public class DefibrillatorDirectory {
+class DefibrillatorDirectory {
 
     private final List<Defibrillator> availableDefibrillators;
 
@@ -11,7 +10,7 @@ public class DefibrillatorDirectory {
         this.availableDefibrillators = availableDefibrillators;
     }
 
-    public Defibrillator getClosestTo(User user) {
+    Defibrillator getClosestTo(User user) {
         Iterator<Defibrillator> defibrillatorIterator = availableDefibrillators.iterator();
         Defibrillator closestDefibrillator = defibrillatorIterator.next();
         while (defibrillatorIterator.hasNext()){
@@ -24,19 +23,20 @@ public class DefibrillatorDirectory {
     }
 
     public static class BuildNew {
-        List<Defibrillator> availableDefibrillators = Arrays.asList(Defibrillator.NO_VALUE);
+        List<Defibrillator> availableDefibrillators = new ArrayList<>();
 
-        public BuildNew fromStream(InputStream in) {
-            Scanner scanner = new Scanner(in);
-            scanner.nextLine();
-            scanner.nextLine();
+        BuildNew fromScanner(Scanner scanner) {
             int numberOfDefibrillators = scanner.nextInt();
             scanner.nextLine();
-            availableDefibrillators = new ArrayList<>();
             for (int i=0; i< numberOfDefibrillators; i++){
-                Defibrillator defibrillator = new Defibrillator.BuildNew().fromText(scanner.nextLine()).build();
+                Defibrillator defibrillator = new Defibrillator.BuildNew().fromScanner(scanner).build();
                 availableDefibrillators.add(defibrillator);
             }
+            return this;
+        }
+
+        BuildNew addDefibrillator(Defibrillator defibrillator) {
+            availableDefibrillators.add(defibrillator);
             return this;
         }
 

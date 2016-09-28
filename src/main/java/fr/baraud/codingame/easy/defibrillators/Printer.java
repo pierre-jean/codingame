@@ -7,11 +7,11 @@ class Printer {
 
     private final OutputStream out;
 
-    Printer(OutputStream out) {
+    private Printer(OutputStream out) {
         this.out = out;
     }
 
-    public void print(String message) {
+    void print(String message) {
         try {
             tryToWrite(message);
         } catch (IOException e) {
@@ -26,7 +26,7 @@ class Printer {
     public static class BuildNew {
         private OutputStream out = System.out;
 
-        public BuildNew withOutput(OutputStream out) {
+        BuildNew withOutput(OutputStream out) {
             this.out = out;
             return this;
         }
