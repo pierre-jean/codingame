@@ -1,5 +1,6 @@
 package fr.baraud.codingame.easy.marslander1;
 
+import java.util.Collections;
 import java.util.Scanner;
 
 public class Builder {
@@ -22,7 +23,11 @@ public class Builder {
             return this;
         }
         public Landscape build() {
-            return new Landscape();
+            return new Landscape(Collections.emptyList(), new Gravity(0d));
+        }
+
+        public LandscapeBuilder addEdge(int x, int y) {
+            return this;
         }
     }
 
