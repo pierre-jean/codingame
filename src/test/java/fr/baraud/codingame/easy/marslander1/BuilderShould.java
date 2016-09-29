@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.assertThat;
 
 public class BuilderShould {
@@ -22,7 +23,7 @@ public class BuilderShould {
     );
 
     @Test
-    public void build_correct_landscape_from_scanner(){
+    public void build_same_landscape_from_scanner_or_from_parameter(){
         Landscape landscapeFromParameters = Builder.buildLandscape()
                 .addEdge(0, 200)
                 .addEdge(100, 100)
@@ -38,7 +39,7 @@ public class BuilderShould {
     }
 
     @Test
-    public void build_correct_lander_from_scanner(){
+    public void build_same_lander_from_scanner_or_from_parameter(){
         Lander landerFromParameters = Builder.buildLander()
                 .atXCoord(15)
                 .atYCoord(200)
@@ -54,5 +55,16 @@ public class BuilderShould {
                 )
                 .build();
         assertThat(landerFromScanner, is (equalTo(landerFromParameters)));
+    }
+
+    @Test
+    public void recognize_different_lander(){
+        Lander lander1 = Builder.buildLander()
+                .atXCoord(15)
+                .build();
+        Lander lander2 = Builder.buildLander()
+                .atXCoord(0)
+                .build();
+        assertThat(lander1, is(not(equalTo(lander2))));
     }
 }

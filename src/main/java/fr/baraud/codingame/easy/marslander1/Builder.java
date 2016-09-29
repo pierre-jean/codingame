@@ -32,7 +32,11 @@ public class Builder {
     }
 
     public static class LanderBuilder {
+        private int x = 0;
+
         public LanderBuilder fromScanner(Scanner inputScanner) {
+            x = inputScanner.nextInt();
+            inputScanner.nextLine();
             return this;
         }
 
@@ -40,7 +44,8 @@ public class Builder {
             return this;
         }
 
-        public LanderBuilder atXCoord(int i) {
+        public LanderBuilder atXCoord(int x) {
+            this.x = x;
             return this;
         }
 
@@ -69,7 +74,7 @@ public class Builder {
         }
 
         public Lander build(){
-            return new Lander(0,0,0,0,0,0,0);
+            return new Lander(x,0,0,0,0,0,0);
         }
     }
 }
