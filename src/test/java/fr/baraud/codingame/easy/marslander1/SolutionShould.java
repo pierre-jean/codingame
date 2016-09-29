@@ -16,7 +16,7 @@ public class SolutionShould {
     private static final String EXAMPLE_1_INPUT = "fr/baraud/codingame/easy/marslander1/example_1_input.txt";
     private static final String EXAMPLE_1_OUTPUT = "fr/baraud/codingame/easy/marslander1/example_1_output.txt";
 
-    private void assertInputResourceGiveOutputResource(String inputResource, String outputResource) throws IOException, URISyntaxException {
+    private void assert_solving_input_resource_produces_output_resource(String inputResource, String outputResource) throws IOException, URISyntaxException {
         InputStream in = new FileInputStream(getClass().getClassLoader().getResource(inputResource).getFile());
         OutputStream out = new ByteArrayOutputStream();
         Solution.solve(in, out);
@@ -26,6 +26,6 @@ public class SolutionShould {
 
     @Test
     public void solve_example() throws IOException, URISyntaxException {
-        assertInputResourceGiveOutputResource(EXAMPLE_1_INPUT, EXAMPLE_1_OUTPUT);
+        assert_solving_input_resource_produces_output_resource(EXAMPLE_1_INPUT, EXAMPLE_1_OUTPUT);
     }
 }
