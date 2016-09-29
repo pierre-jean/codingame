@@ -40,8 +40,36 @@ public class Builder {
             return this;
         }
 
+        public LanderBuilder atXCoord(int i) {
+            return this;
+        }
+
+        public LanderBuilder atYCoord(int i) {
+            return this;
+        }
+
+        public LanderBuilder atHorizontalSpeed(int i) {
+            return this;
+        }
+
+        public LanderBuilder atVerticalSpeed(int i) {
+            return this;
+        }
+
+        public LanderBuilder withFuelAmount(int i) {
+            return this;
+        }
+
+        public LanderBuilder withRotation(int i) {
+            return this;
+        }
+
+        public LanderBuilder withPower(int i) {
+            return this;
+        }
+
         public Lander build(){
-            return new Lander();
+            return new Lander(0,0,0,0,0,0,0);
         }
     }
 }
