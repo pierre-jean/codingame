@@ -133,4 +133,18 @@ public class BuilderShould {
                 .build();
         assertThat(lander1, is(not(equalTo(lander2))));
     }
+
+    @Test
+    public void compute_next_round_lander_characteristics(){
+        Lander initLander = Builder.buildLander()
+                .atYCoord(100)
+                .atVerticalSpeed(10)
+                .build();
+        Lander afterRoundLander = Builder.buildLander()
+                .fromLander(initLander)
+                .next()
+                .build();
+        assertThat(afterRoundLander.y, is(equalTo(110)));
+
+    }
 }

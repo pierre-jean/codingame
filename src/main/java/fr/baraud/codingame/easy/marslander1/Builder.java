@@ -5,6 +5,8 @@ import java.util.Scanner;
 
 public class Builder {
 
+    private static double MARS_GRAVITY = 3.711;
+
     public static LandscapeBuilder buildLandscape() {
         return new LandscapeBuilder();
     }
@@ -88,6 +90,26 @@ public class Builder {
 
         public LanderBuilder withPower(int power) {
             this.enginePower = power;
+            return this;
+        }
+
+        public LanderBuilder fromLander(Lander initLander) {
+            this.x = initLander.x;
+            this.y = initLander.y;
+            this.horizontalSpeed = initLander .hSpeed;
+            this.verticalSpeed = initLander.vSpeed;
+            this.rotationAngle = initLander.rotation;
+            this.fuelAmount = initLander.fuel;
+            this.enginePower = initLander.power;
+            return this;
+        }
+
+
+        public LanderBuilder next() {
+            this.x = x + horizontalSpeed;
+            this.y = y + verticalSpeed;
+            this.horizontalSpeed = (int) (horizontalSpeed + (enginePower * Math.sin(rotationAngle)));
+            this.verticalSpeed = (int) (verticalSpeed + (enginePower * Math.sin(rotationAngle)) - MARS_GRAVITY);
             return this;
         }
 

@@ -2,13 +2,13 @@ package fr.baraud.codingame.easy.marslander1;
 
 public class Lander {
 
-    private final int x;
-    private final int y;
-    private final int hSpeed;
-    private final int vSpeed;
-    private final int fuel;
-    private final int rotation;
-    private final int power;
+    final int x;
+    final int y;
+    final int hSpeed;
+    final int vSpeed;
+    final int fuel;
+    final int rotation;
+    final int power;
 
     Lander(int x, int y, int hSpeed, int vSpeed, int fuel, int rotation, int power){
 
