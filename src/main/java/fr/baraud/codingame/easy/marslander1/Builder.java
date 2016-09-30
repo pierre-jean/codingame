@@ -32,10 +32,22 @@ public class Builder {
     }
 
     public static class LanderBuilder {
-        private int x = 0;
+        private int x;
+        private int y;
+        private int horizontalSpeed;
+        private int verticalSpeed;
+        private int fuelAmount;
+        private int rotationAngle;
+        private int enginePower;
 
         public LanderBuilder fromScanner(Scanner inputScanner) {
             x = inputScanner.nextInt();
+            y = inputScanner.nextInt();
+            horizontalSpeed = inputScanner.nextInt();
+            verticalSpeed = inputScanner.nextInt();
+            fuelAmount = inputScanner.nextInt();
+            rotationAngle = inputScanner.nextInt();
+            enginePower = inputScanner.nextInt();
             inputScanner.nextLine();
             return this;
         }
@@ -49,32 +61,38 @@ public class Builder {
             return this;
         }
 
-        public LanderBuilder atYCoord(int i) {
+        public LanderBuilder atYCoord(int y) {
+            this.y = y;
             return this;
         }
 
-        public LanderBuilder atHorizontalSpeed(int i) {
+        public LanderBuilder atHorizontalSpeed(int hSpeed) {
+            this.horizontalSpeed = hSpeed;
             return this;
         }
 
-        public LanderBuilder atVerticalSpeed(int i) {
+        public LanderBuilder atVerticalSpeed(int vSpeed) {
+            this.verticalSpeed = vSpeed;
             return this;
         }
 
-        public LanderBuilder withFuelAmount(int i) {
+        public LanderBuilder withFuelAmount(int fuel) {
+            this.fuelAmount = fuel;
             return this;
         }
 
-        public LanderBuilder withRotation(int i) {
+        public LanderBuilder withRotation(int angle) {
+            this.rotationAngle = angle;
             return this;
         }
 
-        public LanderBuilder withPower(int i) {
+        public LanderBuilder withPower(int power) {
+            this.enginePower = power;
             return this;
         }
 
         public Lander build(){
-            return new Lander(x,0,0,0,0,0,0);
+            return new Lander(x,y,horizontalSpeed,verticalSpeed,fuelAmount,rotationAngle,enginePower);
         }
     }
 }

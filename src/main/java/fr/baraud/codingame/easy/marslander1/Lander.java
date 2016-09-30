@@ -30,6 +30,19 @@ public class Lander {
     }
 
     @Override
+    public String toString() {
+        return "Lander{" +
+                "x=" + x +
+                ", y=" + y +
+                ", hSpeed=" + hSpeed +
+                ", vSpeed=" + vSpeed +
+                ", fuel=" + fuel +
+                ", rotation=" + rotation +
+                ", power=" + power +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;

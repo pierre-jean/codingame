@@ -58,12 +58,78 @@ public class BuilderShould {
     }
 
     @Test
-    public void recognize_different_lander(){
+    public void not_build_lander_equal_to_lander_with_different_x_pos(){
         Lander lander1 = Builder.buildLander()
                 .atXCoord(15)
                 .build();
         Lander lander2 = Builder.buildLander()
                 .atXCoord(0)
+                .build();
+        assertThat(lander1, is(not(equalTo(lander2))));
+    }
+
+    @Test
+    public void not_build_lander_equal_to_lander_with_different_y_pos(){
+        Lander lander1 = Builder.buildLander()
+                .atYCoord(15)
+                .build();
+        Lander lander2 = Builder.buildLander()
+                .atYCoord(0)
+                .build();
+        assertThat(lander1, is(not(equalTo(lander2))));
+    }
+
+    @Test
+    public void not_build_lander_equal_to_lander_with_different_horizontal_speed(){
+        Lander lander1 = Builder.buildLander()
+                .atHorizontalSpeed(5)
+                .build();
+        Lander lander2 = Builder.buildLander()
+                .atHorizontalSpeed(0)
+                .build();
+        assertThat(lander1, is(not(equalTo(lander2))));
+    }
+
+    @Test
+    public void not_build_lander_equal_to_lander_with_different_vertical_speed(){
+        Lander lander1 = Builder.buildLander()
+                .atVerticalSpeed(5)
+                .build();
+        Lander lander2 = Builder.buildLander()
+                .atVerticalSpeed(0)
+                .build();
+        assertThat(lander1, is(not(equalTo(lander2))));
+    }
+
+    @Test
+    public void not_build_lander_equal_to_lander_with_different_fuel_amount(){
+        Lander lander1 = Builder.buildLander()
+                .withFuelAmount(5)
+                .build();
+        Lander lander2 = Builder.buildLander()
+                .withFuelAmount(0)
+                .build();
+        assertThat(lander1, is(not(equalTo(lander2))));
+    }
+
+    @Test
+    public void not_build_lander_equal_to_lander_with_different_rotation(){
+        Lander lander1 = Builder.buildLander()
+                .withRotation(5)
+                .build();
+        Lander lander2 = Builder.buildLander()
+                .withRotation(0)
+                .build();
+        assertThat(lander1, is(not(equalTo(lander2))));
+    }
+
+    @Test
+    public void not_build_lander_equal_to_lander_with_different_power(){
+        Lander lander1 = Builder.buildLander()
+                .withPower(4)
+                .build();
+        Lander lander2 = Builder.buildLander()
+                .withPower(0)
                 .build();
         assertThat(lander1, is(not(equalTo(lander2))));
     }
