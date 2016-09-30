@@ -1,7 +1,8 @@
 package fr.baraud.codingame.easy.marslander1;
 
 public class Lander {
-
+    private static final int LANDING_MAX_SPEED = -40;
+    private static final int MAX_POWER = 4;
     final int x;
     final int y;
     final int hSpeed;
@@ -25,8 +26,46 @@ public class Lander {
         return true;
     }
 
-    public Instruction getInstructionToLandOn(Landscape marsLandscape) {
-        return new Instruction();
+    public Instruction getInstructionToLandOn(Landscape marsLandscape)
+    {
+        Lander landerWithLessPower = Builder.buildLander()
+                .fromLander(this)
+                .decreasePower()
+                .next()
+                .build();
+        if (landerWithLessPower.canStopInTimeOn(marsLandscape)){
+            return Instruction.decreasePower(this);
+        }
+        if (this.canStopInTimeOn(marsLandscape)){
+            return Instruction.keepGoing(this);
+        }
+        return Instruction.increasePower(this);
+    }
+
+    private boolean canStopInTimeOn(Landscape landscape) {
+        if (landscape.collide(getPositionLanding(landscape))){
+            return false;
+        }
+        return true;
+    }
+
+    private Position getPositionLanding(Landscape landscape) {
+        if (this.vSpeed > LANDING_MAX_SPEED){
+            return currentPosition();
+        }
+        if (Math.abs(landscape.gravity().value()) > MAX_POWER){
+            throw new RuntimeException("Gravity too strong to slow down with this engine");
+        }
+        Lander nextRoundLander = Builder.buildLander()
+                .fromLander(this)
+                .increasePower()
+                .next()
+                .build();
+        return nextRoundLander.getPositionLanding(landscape);
+    }
+
+    private Position currentPosition() {
+        return new Position(x, y);
     }
 
     @Override

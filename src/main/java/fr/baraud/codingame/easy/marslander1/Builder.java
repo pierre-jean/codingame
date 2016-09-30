@@ -34,6 +34,8 @@ public class Builder {
     }
 
     public static class LanderBuilder {
+        private static final int MIN_ENGINE_POWER = 0;
+        private static final int MAX_ENGINE_POWER = 4;
         private int x;
         private int y;
         private int horizontalSpeed;
@@ -115,6 +117,20 @@ public class Builder {
 
         public Lander build(){
             return new Lander(x,y,horizontalSpeed,verticalSpeed,fuelAmount,rotationAngle,enginePower);
+        }
+
+        public LanderBuilder decreasePower() {
+            if (enginePower > MIN_ENGINE_POWER){
+                enginePower --;
+            }
+            return this;
+        }
+
+        public LanderBuilder increasePower() {
+            if (enginePower < MAX_ENGINE_POWER){
+                enginePower ++;
+            }
+            return this;
         }
     }
 }

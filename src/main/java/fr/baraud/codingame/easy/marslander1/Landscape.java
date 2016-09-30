@@ -30,4 +30,12 @@ public class Landscape {
         result = 31 * result + (gravity != null ? gravity.hashCode() : 0);
         return result;
     }
+
+    public boolean collide(Position positionLanding) {
+        return positionLanding.Ycoord() < 100;
+    }
+
+    public Gravity gravity() {
+        return gravity;
+    }
 }

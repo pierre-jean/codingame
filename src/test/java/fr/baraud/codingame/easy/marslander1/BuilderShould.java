@@ -145,6 +145,25 @@ public class BuilderShould {
                 .next()
                 .build();
         assertThat(afterRoundLander.y, is(equalTo(110)));
-
+        assertThat(afterRoundLander.vSpeed, is(equalTo(6)));
+        afterRoundLander = Builder.buildLander()
+                .fromLander(afterRoundLander)
+                .next()
+                .build();
+        assertThat(afterRoundLander.y, is(equalTo(116)));
+        assertThat(afterRoundLander.vSpeed, is(equalTo(2)));
+        afterRoundLander = Builder.buildLander()
+                .fromLander(afterRoundLander)
+                .next()
+                .build();
+        assertThat(afterRoundLander.y, is(equalTo(118)));
+        assertThat(afterRoundLander.vSpeed, is(equalTo(-1)));
+        afterRoundLander = Builder.buildLander()
+                .fromLander(afterRoundLander)
+                .next()
+                .build();
+        assertThat(afterRoundLander.y, is(equalTo(117)));
+        assertThat(afterRoundLander.vSpeed, is(equalTo(-4)));
     }
+
 }

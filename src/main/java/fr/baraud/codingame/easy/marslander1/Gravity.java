@@ -24,4 +24,8 @@ public class Gravity {
         long temp = Double.doubleToLongBits(valueInMeterSecondSquare);
         return (int) (temp ^ (temp >>> 32));
     }
+
+    public double value() {
+        return valueInMeterSecondSquare;
+    }
 }
